@@ -1,0 +1,12 @@
+CPU mode: Z80
+Loaded 21336 bytes from /private/tmp/claude-501/-Users-wohl-src-80mcp/57f09b91-ea21-4a63-b89d-52ab64b3ee55/scratchpad/80un/80un.com
+
+80UN - CP/M Archive Unpacker v2.3
+
+Extracting:
+  -03MAR86 OK
+  B5-TIME.INF
+  Error
+
+1 file(s) extracted
+Program exit via JMP 0

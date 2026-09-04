@@ -1,0 +1,32 @@
+For the z80 we did:
+git@github.com:avwohl/z80cpmw.git
+git@github.com:avwohl/ioscpm.git
+https://github.com/avwohl/cpmemu
+git@github.com:avwohl/cpmdroid.git
+git@github.com:avwohl/qxDOS.git
+
+For 8088 and 386 we did:
+git@github.com:avwohl/dosiz.git
+git@github.com:avwohl/qxDOS.git
+
+Much of the debugging has been mouse clicks and screen reads.
+That may be needed to debug the above, however,
+for packages like git@github.com:avwohl/80un.git
+they are just packages to be run in CP/M or MP/M or dos.
+
+Propose a MCP inteface to the above emulators above. I would imagine:
+For z80:
+ - bare machine
+ - cp/m
+ - mp/m
+
+for 808/286/386:
+ - bare machine
+ - freedos
+
+For google there are MCP specs for atari, and emulators and commador.
+But I didn't see a spec for the above.
+Propose a spec and using our exisiting related repos as a base.
+If there are existing MCPs that coer the area that is fine we dont need to do anything
+
+

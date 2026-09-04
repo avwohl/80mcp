@@ -1,0 +1,2 @@
+dosiz: ethernet/slirp backend unavailable; INT 0x60 packet driver will accept guest calls but RX/TX will no-op.
+dosiz: Crynwr pktdrv installed at INT 60h, stub at 0060:0000

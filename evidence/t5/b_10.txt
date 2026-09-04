@@ -1,0 +1,88 @@
+MP/M II Emulator
+================
+
+Initialized 8 consoles
+Local console enabled on all 8 consoles
+Mounted /private/tmp/claude-501/-Users-wohl-src-80mcp/57f09b91-ea21-4a63-b89d-52ab64b3ee55/scratchpad/mpm2/disks/mpm2_system.img as drive A: [hd1k (8MB)]
+Booting from disk A...
+Loaded 16384 bytes from system tracks
+Starting execution at 0x0000
+
+Setting boot timeout: 10 seconds
+HTTP server listening on 127.0.0.1:18203
+Browse files at: http://localhost:18203/
+
+Press Ctrl+C to shutdown
+
+
+Boot
+LDR.IOS.GO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+MP/M II V2.1 Loader   
+Copyright (C) 1981, Digital Research
+Nmb of consoles     =  4
+Breakpoint RST #    =  6
+Memory Segment Table:
+SYSTEM  DAT  FF00H  0100H
+TMPD    DAT  FE00H  0100H
+USERSYS STK  FC00H  0200H
+XIOSJMP TBL  FB00H  0100H
+RESBDOS SPR  EF00H  0C00H
+XDOS    SPR  CD00H  2200H
+BNKXIOS SPR  C200H  0B00H
+BNKBDOS SPR  9F00H  2300H
+BNKXDOS SPR  9D00H  0200H
+TMP     SPR  9800H  0500H
+LCKLSTS DAT  9500H  0300H
+CONSOLE DAT  9100H  0400H
+-------------------------
+MP/M II Sys  9100H  6F00H  Bank 0
+Memseg  Usr  0000H  C000H  Bank 1
+Memseg  Usr  0000H  C000H  Bank 2
+Memseg  Usr  0000H  C000H  Bank 3
+Memseg  Usr  0000H  C000H  Bank 4
+Memseg  Usr  0000H  C000H  Bank 5
+Memseg  Usr  0000H  C000H  Bank 6
+Memseg  Usr  0000H  C000H  Bank 7
+
+
+MP/M II V2.1
+Copyright (C) 1982, Digital Research
+
+3A>
+
+MP/M II V2.1
+Copyright (C) 1982, Digital Research
+
+2A>
+
+MP/M II V2.1
+Copyright (C) 1982, Digital Research
+
+1A>
+Boot timeout - shutting down...
+Z80 executed 1124685 instructions
+Goodbye!

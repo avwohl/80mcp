@@ -1,0 +1,71 @@
+
+
+RetroBrew SBC [SBC_simh_std] Boot Loader
+NV Switches Found
+
+AutoBoot in 0 Seconds (<esc> aborts, <enter> now)...                                                             
+
+Booting Disk Unit 2, Slice 3, Sector 0x0000C800...
+
+Volume "CP/M 3.0" [0x0100-0x1000, entry @ 0x0100]...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CP/M V3.0 Loader
+Copyright (C) 1998, Caldera Inc.    
+
+ BNKBIOS3 SPR  F600  0800
+ BNKBIOS3 SPR  4700  3900
+ RESBDOS3 SPR  F000  0600
+ BNKBDOS3 SPR  1900  2E00
+ 
+ 60K TPA
+
+CP/M v3.0 [BANKED] for HBIOS v3.5.1
+
+RAM Disk Initialized
+
+A>DIR
+A: DATE     COM : DEVICE   COM : DIR      COM : DUMP     COM : ED       COM 
+A: ERASE    COM : GENCOM   COM : GET      COM : HELP     COM : HELP     HLP 
+A: HEXCOM   COM : INITDIR  COM : LIB      COM : LINK     COM : MAC      COM 
+A: PATCH    COM : PIP      COM : PUT      COM : RENAME   COM : RMAC     COM 
+A: SAVE     COM : SET      COM : SETDEF   COM : SHOW     COM : SUBMIT   COM 
+A: TYPE     COM : XREF     COM : ZSID     COM : README   TXT : CPMLDR   COM 
+A: CPMLDR   SYS : CCP      COM : GENCPM   COM : GENRES   DAT : GENBNK   DAT 
+A: BIOS3    SPR : BNKBIOS3 SPR : BDOS3    SPR : BNKBDOS3 SPR : RESBDOS3 SPR 
+A: CPM3RES  SYS : CPM3BNK  SYS : GENCPM   DAT : CPM3     SYS : CPM3FIX  PAT 
+A: ASSIGN   COM : BBCBASIC COM : BBCBASIC TXT : CPUSPD   COM : REBOOT   COM 
+A: COPYSL   COM : COPYSL   DOC : FAT      COM : FDU      COM : FDU      DOC 
+A: FORMAT   COM : MODE     COM : RTC      COM : SLABEL   COM : SURVEY   COM 
+A: SYSCOPY  COM : HTALK    COM : TBASIC   COM : TIMER    COM : TUNE     COM 
+A: XM       COM : ZMP      COM : ZMP      HLP : ZMP      DOC : ZMP      CFG 
+A: ZMP      FON : ZMXFER   OVR : ZMTERM   OVR : ZMINIT   OVR : ZMCONFIG OVR 
+A: ZMD      COM : VGMPLAY  COM : ASCIIART BAS : DDTZ     DOC : FLASH    DOC 
+A: SUPERSUB DOC : TE       DOC : UNARC    DOC : UNZIP    DOC : ZDE      DOC 
+A: CRUNCH28 CFG : CLRDIR   COM : COMPARE  COM : CRUNCH   COM : DDTZ     COM 
+A: EX       COM : FDISK80  COM : FIND     COM : FLASH    COM : GENHEX   COM 
+A: LS       COM : LSWEEP   COM : MBASIC   COM : NULU     COM : PMARC    COM 
+A: PMEXT    COM : RMXSUB1  COM : SUPERSUB COM : TDLBASIC COM : TE       COM 
+
+Press RETURN to Continue 

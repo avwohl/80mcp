@@ -1,0 +1,7 @@
+[DISK] Validated disk0: /Users/wohl/src/romwbw_emu/disks/hd1k_combo.img (51380224 bytes)
+CPU mode: Z80
+RomWBW mode: 512KB ROM + 512KB RAM, bank switching enabled
+Loaded NVRAM setting 'C' from /Users/wohl/.config/romwbw_emu/nvram (migrates to the new path on exit)
+Console escape: ^E - reserved on an interactive terminal only; stdin is not a tty, so the key reaches the guest
+Starting execution at 0x0000 in ROM bank 0
+Saved NVRAM setting 'C' to /private/tmp/claude-501/-Users-wohl-src-80mcp/57f09b91-ea21-4a63-b89d-52ab64b3ee55/scratchpad/verify/t1/xdg/romwbw_emu/nvram

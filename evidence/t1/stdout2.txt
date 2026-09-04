@@ -1,0 +1,59 @@
+
+
+RetroBrew SBC [SBC_simh_std] Boot Loader
+NV Switches Found
+
+AutoBoot in 0 Seconds (<esc> aborts, <enter> now)...                                                             
+
+Booting Disk Unit 2, Slice 0, Sector 0x00000800...
+
+Volume "CP/M 2.2" [0xD000-0xFE00, entry @ 0xE600]...
+
+CBIOS v3.5.1 [WBW]
+
+Formatting RAMDISK...
+
+Configuring Drives...
+
+	A:=HDSK0:0
+	B:=MD0:0
+	C:=MD1:0
+	D:=HDSK0:1
+	E:=HDSK0:2
+	F:=HDSK0:3
+	G:=HDSK0:4
+	H:=HDSK0:5
+	I:=HDSK0:6
+	J:=HDSK0:7
+
+	1859 Disk Buffer Bytes Free
+
+CP/M-80 v2.2, 54.0K TPA
+
+A>DIR
+A: ASM      COM : DDT      COM : DUMP     COM : ED       COM
+A: HELP     COM : HELP     HLP : LIB      COM : LINK     COM
+A: LOAD     COM : MAC      COM : PIP      COM : RMAC     COM
+A: STAT     COM : SUBMIT   COM : XREF     COM : XSUB     COM
+A: ZSID     COM : README   TXT : ASSIGN   COM : BBCBASIC COM
+A: BBCBASIC TXT : CPUSPD   COM : REBOOT   COM : COPYSL   COM
+A: COPYSL   DOC : FAT      COM : FDU      COM : FDU      DOC
+A: FORMAT   COM : MODE     COM : RTC      COM : SLABEL   COM
+A: SURVEY   COM : SYSCOPY  COM : SYSGEN   COM : TALK     COM
+A: HTALK    COM : TBASIC   COM : TIMER    COM : TUNE     COM
+A: XM       COM : ZMP      COM : ZMP      HLP : ZMP      DOC
+A: ZMP      CFG : ZMP      FON : ZMXFER   OVR : ZMTERM   OVR
+A: ZMINIT   OVR : ZMCONFIG OVR : ZMD      COM : VGMPLAY  COM
+A: CPM      SYS : ASCIIART BAS : DDTZ     DOC : FLASH    DOC
+A: SUPERSUB DOC : TE       DOC : UNARC    DOC : UNZIP    DOC
+A: ZDE      DOC : CRUNCH28 CFG : CLRDIR   COM : COMPARE  COM
+A: CRUNCH   COM : DDTZ     COM : EX       COM : FDISK80  COM
+A: FIND     COM : FLASH    COM : GENHEX   COM : LS       COM
+A: LSWEEP   COM : MBASIC   COM : NULU     COM : PMARC    COM
+A: PMEXT    COM : RMXSUB1  COM : SUPERSUB COM : TDLBASIC COM
+A: TE       COM : UNARC    COM : UNCR     COM : UNZIP    COM
+A: WDATE    COM : XSUB1    COM : ZAP      COM : ZDE      COM
+A: ZDENST   COM : ZMRX     COM : ZMTX     COM : KERCPM22 COM
+A: R8       COM : W8       COM : TESTFILE TXT : TEXT     TXT
+A: RAND     BIN : BIG      BIN : T        TXT
+A>

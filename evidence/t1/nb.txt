@@ -1,0 +1,31 @@
+
+
+RetroBrew SBC [SBC_simh_std] Boot Loader
+NV Switches Found
+
+AutoBoot in 0 Seconds (<esc> aborts, <enter> now)...                                                             
+
+Loading CP/M 2.2...
+
+CBIOS v3.5.1 [WBW]
+
+Formatting RAMDISK...
+
+Configuring Drives...
+
+	A:=MD0:0
+	B:=MD1:0
+	C:=HDSK0:0
+	D:=HDSK0:1
+	E:=HDSK0:2
+	F:=HDSK0:3
+	G:=HDSK0:4
+	H:=HDSK0:5
+	I:=HDSK0:6
+	J:=HDSK0:7
+
+	1859 Disk Buffer Bytes Free
+
+CP/M-80 v2.2, 54.0K TPA
+
+A>

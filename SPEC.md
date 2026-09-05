@@ -593,8 +593,8 @@ Extracting:
 1 file(s) extracted
 ```
 
-**1 of 23** extracted, the one written file truncated (1437 bytes under `auto` vs 1664
-under `binary`), the other 21 absent — and **process exit code 0**, with stderr still
+**1 of 23** extracted, the one written file truncated (1437 bytes against 1664), the
+other 21 absent — and **process exit code 0**, with stderr still
 saying `Program exit via JMP 0`. There is no CLI flag; only a config file can set this. The
 batch verb synthesizes the `.cfg` and defaults to `binary`. This is also the sharpest
 available proof of Invariant 4.
@@ -1393,7 +1393,8 @@ of the fidelity block: the Python reference wrote **1537** bytes for the same me
 know which convention the golden was made under.**
 
 **The negative case, which is why there is no `exit_code` field.** The same fixture with
-`default_mode:"auto"`:
+`default_mode:"auto"` and `eol_convert:true` — the pair cpmemu uses when it is handed no
+config file at all:
 
 ```json
 {"pass":false,"exit_reason":"jmp_0","wall_ms":"…",
@@ -1700,8 +1701,15 @@ resolution — exiting nonzero on any problem.
 **Acceptance, as literal assertions:**
 - `method9.arc` under `cpm-hosted` gives `23 file(s) extracted`, `exit_reason:"jmp_0"`, and
   `B5-TIME.INF` at exactly **1664** bytes.
-- The same fixture with `default_mode:"auto"` gives `1 file(s) extracted`, `pass:false`,
-  and **no `exit_code` field anywhere in the result**.
+- The same fixture with `default_mode:"auto"` **and `eol_convert:true`** gives
+  `1 file(s) extracted`, `pass:false`, and **no `exit_code` key anywhere in the result**.
+  Both halves of the combination are required — measured across the full matrix on cpmemu
+  4.8.0, `default_mode:"binary"` gives 23/1664 whatever `eol_convert` says, and
+  `"auto"`/`"text"` with `eol_convert:false` also gives 23/1664. Running `cpmemu` with no
+  config file at all lands on the corrupting pair, because those are its built-in
+  defaults; the synthesized `.cfg` is what prevents it. Assert on the parsed JSON **keys**
+  for the `exit_code` half, not on a substring — `fidelity.divergences` legitimately
+  contains the words "exit status" in the prose explaining the absence.
 - `x80_diff_run` on the same fixture returns `identical:23, differ:0` with
   `normalize:["lowercase_names","pad_to_record"]`, and `identical:2, differ:21` with
   `lowercase_names` alone.

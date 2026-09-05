@@ -1,0 +1,63 @@
+[build-system]
+# 77.0.0 is the floor, not decoration: it is the release that implements
+# PEP 639, and `license = "GPL-3.0-or-later"` as an SPDX string plus
+# `license-files` needs it. Measured against setuptools 68.2.2:
+#   configuration error: `project.license` must be valid exactly by one
+#   definition (2 matches found)
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "eightymcp"
+version = "0.1.0"
+description = "MCP server for the avwohl Z80 and x86 emulator family"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE"]
+authors = [{ name = "Andrew Wohl" }]
+keywords = ["mcp", "cpm", "z80", "dos", "emulator", "romwbw", "mpm"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: System :: Emulators",
+]
+
+# No runtime dependencies, deliberately. The MCP revision this server targets
+# (2026-07-28) removed the initialize handshake, and no SDK implements it yet;
+# the JSON-RPC in eightymcp/jsonrpc.py is 400 lines of stdlib. Backends are
+# found at runtime by config or PATH and are never vendored, so there is
+# nothing to pin here either.
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    # The SPEC.md 6.0 CI gate has two halves: "every inputSchema json.loads"
+    # (checked at import time in eightymcp/schemas.py, stdlib only) and
+    # "validates against the JSON Schema 2020-12 metaschema", which needs a
+    # real validator. Dev-only; the server never imports it.
+    "jsonschema>=4.20",
+]
+
+[project.urls]
+Homepage = "https://github.com/avwohl/80mcp"
+Source = "https://github.com/avwohl/80mcp"
+
+[project.scripts]
+# "80mcp" is not a legal Python identifier, so the distribution and the import
+# package are "eightymcp" and only the console script carries the real name.
+"80mcp" = "eightymcp.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["eightymcp*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+filterwarnings = ["error"]

@@ -1,0 +1,118 @@
+Captured 2026-09-05T03:19:09Z on Darwin arm64, cpmemu 4.8.0, 80mcp 0.1.0.
+Paths and wall_ms values are machine-specific; every count and byte size is not.
+
+80un   $UN80_PARENT/80un
+server 80mcp
+
+========================================================================
+1. x80_profiles - what can this installation actually run?
+========================================================================
+  cpm-hosted   cpmemu 4.8.0  ready=True
+  fidelity.divergences:
+    - setup_command_line() never writes the FCB at 0x5C, so a program testing fcb(1)=' ' for its usage banner takes the wrong branch. 80un's usage path is unreachable here.
+    - Created filenames are lowercased on the host: TEST.TXT becomes test.txt, B5-TIME.INF becomes b5-time.inf. guest_name and host_name are reported separately for that reason.
+    - There is no exit status. cpmemu exit(0)s on every normal path including its runaway watchdog, so x80_cpm_run has no exit_code field at all (SPEC.md 5.4 Invariant 4).
+    - default_mode=auto never resolves on write: the same 23-member ARC extracted 1 of 23, printed 'Error', truncated the one file it wrote to 1437 bytes against 1664, and exited 0 (measured). The server synthesizes a .cfg and defaults to binary.
+    - The guest writes whole 128-byte records, so a file is padded to the next record boundary with 0x1A against a host reference's exact size; compare under normalize:['pad_to_record'].
+
+========================================================================
+2. x80_probe - what OS does this program actually need?
+========================================================================
+  verdict sufficient  recommended cpm-hosted
+    exit_reason jmp_0 after 658 ms on cpm-hosted
+    first line of output: 80UN - CP/M Archive Unpacker v2.3
+    the run completed on cpm-hosted with no unimplemented syscalls
+  escalation: {"tool": "x80_cpm_run", "arguments": {"profile": "cpm-hosted", "program": "$UN80_PARENT/80un/80un.com", "args": ["M9.ARC"]}}
+
+========================================================================
+3. x80_cpm_run - the batch verb, default_mode binary
+========================================================================
+  pass=True  exit_reason=jmp_0  wall_ms=658  files_out=23
+  'exit_code' among the result keys: False   <- SPEC.md 5.4 Invariant 4
+    ok   stdout_contains '23 file(s) extracted'
+    ok   stdout_not_contains 'Error'
+    ok   stdout_not_contains 'Cannot open'
+    ok   stdout_not_contains 'Invalid'
+    ok   files_created 'TIME2.ASM'
+    ok   files_created 'ZTIM-S3.CPM'
+    ok   no_unimplemented_bdos True
+  B5-TIME.INF -> host b5-time.inf, 1664 bytes  <- lowercased on create, and padded to a 128-byte record
+  stderr: Program exit via JMP 0
+
+========================================================================
+4. x80_files - what did the run really create?
+========================================================================
+  23 files created since the run started
+    -03MAR86       -> -03mar86            0 bytes
+    B5-TIME.INF    -> b5-time.inf      1664 bytes
+    B5C-2805.INS   -> b5c-2805.ins     2816 bytes
+    ...
+
+========================================================================
+5. x80_diff_run - the same algorithm as a CP/M .COM and as Python
+========================================================================
+  normalize=['lowercase_names','pad_to_record']
+    compared 23  identical 23  differ 0  only-in 0
+  normalize=['lowercase_names']
+    compared 23  identical 2  differ 21  only-in 0
+  normalize=[]  (no normalization)
+    compared 0  identical 0  differ 0  only-in 46
+  why 21 differ: 1664 == ceil(1537/128)*128: one side wrote whole CP/M records; adding "pad_to_record" to normalize makes these two identical
+
+========================================================================
+6. Trap 1 - default_mode auto (SPEC.md 5.4 Invariant 3)
+========================================================================
+  pass=False  exit_reason=jmp_0  files_out=2   process rc was 0 either way
+  stdout ends: '1 file(s) extracted'
+    -03MAR86            0 bytes
+    B5-TIME.INF      1437 bytes
+  warning: default_mode was 'auto'; cpmemu's auto mode never resolves on write
+  warning: default_mode 'auto' with eol_convert true is the measured corruption: BDOS 22 Make keeps MODE_AUTO (cpmemu.cc:2115) and write_with_conversion takes the text branch for it (cpmemu.cc:952-964), truncating every written file at its first 0x1A. On a 23-member ARC that gave 1 extracted file of 23, at 1437 bytes instead of 1664, and process rc 0.
+
+========================================================================
+7. Trap 2 - a truncated archive. Stdout lies; exit_reason does not.
+========================================================================
+  pass=False  exit_reason=timeout  files_out=15 of 23
+  last stdout line: '  B5C-MORE.INS'  <- no error message anywhere
+
+========================================================================
+8. Trap 3 - a phase-5 op answers structurally, not with a bare failure
+========================================================================
+  isError: True
+  {
+  "error": "unsupported",
+  "op": "files:resolve",
+  "backend": "cpmemu",
+  "reason": "SPEC.md 6.4: `handles` and `resolve` are phase 5. Both read CPMEmulator::open_files (src/cpmemu.cc:346), which is declared inside a 3429-line .cc with no header, so nothing outside the process can reach it until the backend speaks MBP on fd 3",
+  "escalation": {
+    "tool": "x80_files",
+    "arguments": {
+      "op": "list",
+     ...
+
+========================================================================
+9. Checking every measured expectation
+========================================================================
+  ok   profiles.ready                   ['cpm-hosted']
+  ok   probe.verdict                    'sufficient'
+  ok   probe.recommended                'cpm-hosted'
+  ok   run.pass                         True
+  ok   run.exit_reason                  'jmp_0'
+  ok   run.files                        23
+  ok   run.b5_time_inf_bytes            1664
+  ok   run.b5_time_inf_host_name        'b5-time.inf'
+  ok   run.has_exit_code_key            False
+  ok   list.since_start                 23
+  ok   diff.both.identical              23
+  ok   diff.both.differ                 0
+  ok   diff.lowercase_only.identical    2
+  ok   diff.lowercase_only.differ       21
+  ok   diff.none.only_in_guest          23
+  ok   diff.none.only_in_reference      23
+  ok   auto.pass                        False
+  ok   auto.files                       2
+  ok   auto.b5_time_inf_bytes           1437
+  ok   truncated.pass                   False
+  ok   truncated.exit_reason            'timeout'
+
+21/21 expectations held
